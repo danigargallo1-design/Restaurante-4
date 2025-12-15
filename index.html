@@ -226,6 +226,28 @@ footer {
     .sections-buttons { grid-template-columns: 1fr; gap:20px; }
     form input, form textarea { width: 90%; }
 }
+
+@media (max-width: 768px) {
+  .sections-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 por fila */
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .sections-buttons button {
+    height: 110px;           /* más pequeños */
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+  }
+
+  .sections-buttons button span {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -242,9 +264,11 @@ footer {
 
 <div class="sections-buttons" id="carta">
     <button style="background-image:url('https://www.bupasalud.com/sites/default/files/inline-images/bupa_598072389.jpg')"><span>Menús</span></button>
-    <button style="background-image:url('https://www.torredenunez.com/wp-content/uploads/2023/09/Bocadillos-especiales-1.jpg')"><span>Bocadillos</span></button>
+    <button style="background-image:url('https://clickandplan.es/blog/wp-content/uploads/2025/07/mejores-bocadillos-zaragoza-1024x683.webp')"><span>Bocadillos</span></button>
     <button style="background-image:url('https://images.aws.nestle.recipes/resized/2024_10_23T08_34_55_badun_images.badun.es_pastelitos_de_chocolate_blanco_y_queso_con_fresas_1290_742.jpg')"><span>Postres</span></button>
     <button style="background-image:url('https://revistaiberica.com/wp-content/uploads/2023/05/bebidas.jpg')"><span>Bebidas</span></button>
+     <button style="background-image:url('https://paisdequercus.com/storage/media/images/784/hamburguesa-perfecta.jpg')"><span>Hamburguesas</span></button>
+     <button style="background-image:url('https://forbes.es/wp-content/uploads/2021/12/pexels-artem-beliaikin-452737-scaled.jpg')"><span>Cócteles</span></button>
 </div>
 
 <section id="reservas">
@@ -324,3 +348,4 @@ scrollTopBtn.addEventListener("click", () => {
 
 </body>
 </html>
+
