@@ -275,13 +275,14 @@ button:active {
 
 .welcome {
   text-align: center;
-  padding: 30px 20px;
-  background-color: #f9f9f9; /* opcional, para separar del header */
+  padding: 60px 20px;   /* aumenta el padding para alargar */
+  background-color: #f9f9f9; 
+  margin-bottom: 40px;  /* separa de los botones de menú */
 }
 
 .welcome h2 {
   font-size: 24px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   color: #333;
 }
 
@@ -291,10 +292,15 @@ button:active {
 }
 
 @media (max-width: 768px) {
+  .welcome {
+    padding: 50px 15px;
+    margin-bottom: 30px;
+  }
+
   .welcome h2 {
     font-size: 20px;
   }
-  
+
   .welcome p {
     font-size: 14px;
   }
@@ -404,3 +410,4 @@ scrollTopBtn.addEventListener("click", () => {
 
 </body>
 </html>
+
