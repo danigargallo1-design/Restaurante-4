@@ -18,7 +18,7 @@ html, body {
 
 /* HEADER */
 header {
-    background: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+    background: url('https://elreal.es/wp-content/uploads/2025/02/Diseno-sin-titulo-49.jpg') no-repeat center center/cover;
     height: 100vh;
     position: relative;
     overflow: hidden;
@@ -162,8 +162,6 @@ section h2 {
     transition: 0.3s;
 }
 
-#btnGmail { background: #1a1a1a; color:#fff; }
-#btnGmail:hover { background: #333; }
 
 #reservas button:nth-child(2) { background:#0a7d5c; color:#fff; }
 #reservas button:nth-child(2):hover { background:#128C7E; }
@@ -374,11 +372,103 @@ button:active {
 .sections-buttons.fade-in.show button:nth-child(5) { transition-delay: 0.5s; opacity:1; transform: translateY(0); }
 .sections-buttons.fade-in.show button:nth-child(6) { transition-delay: 0.6s; opacity:1; transform: translateY(0); }
 
+.sections-buttons button {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #fff;
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-size: cover;
+    background-position: center;
+}
+
+.sections-buttons button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255,255,255,0.2); /* la banda brillante */
+    transform: skewX(-25deg);
+    pointer-events: none;
+}
+
+.sections-buttons button:hover {
+    transform: translateY(-3px); /* efecto flotante */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.sections-buttons button:hover::before {
+    animation: shineSection 1s forwards;
+}
+
+.sections-buttons button::before {
+    animation: none; /* reinicia el shine cuando no hay hover */
+}
+
+@keyframes shineSection {
+    0% { left: -75%; }
+    100% { left: 125%; }
+}
+
 header {
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
   transition: background-position 0.2s;
+}
+
+#btnWhatsapp { 
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #25d366, #128C7E);
+    color: #fff; 
+    border-radius: 8px;
+    padding: 14px 32px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+#btnWhatsapp::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255,255,255,0.3); /* banda brillante */
+    transform: skewX(-25deg);
+    transition: none;
+}
+
+#btnWhatsapp:hover {
+    transform: translateY(-3px); /* efecto de “flotar” */
+    box-shadow: 0 10px 18px rgba(0,0,0,0.25);
+}
+
+#btnWhatsapp:hover::before {
+    animation: shine 1s forwards;
+}
+
+#btnWhatsapp::before {
+    animation: none; /* reset cuando no está hover */
+}
+
+@keyframes shine {
+    0% { left: -75%; }
+    100% { left: 125%; }
 }
 
 </style>
@@ -414,19 +504,21 @@ header {
 
 <section id="reservas" class="fade-in">
     <h2>Reservas</h2>
-    <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
-        <button id="btnGmail">Reservar por Gmail</button>
-        <button onclick="window.open('https://wa.me/34643613245','_blank')">Reservar por WhatsApp</button>
-    </div>
+   <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+    
+    <button id="btnWhatsapp">Reservar por WhatsApp</button>
 
-    <form id="gmailForm" style="display:none; margin-top:20px; text-align:center;">
-        <input type="text" placeholder="Nombre" required><br>
-        <input type="email" placeholder="Correo electrónico" required><br>
-        <input type="date" required><br>
-        <input type="time" required><br>
-        <textarea placeholder="Comentarios adicionales" rows="4"></textarea><br>
-        <button type="submit">Reservar</button>
-    </form>
+<script>
+document.getElementById('btnWhatsapp').addEventListener('click', () => {
+    window.open('https://wa.me/34643613245', '_blank');
+});
+</script>
+
+
+</div>
+
+
+
 </section>
 
 <section id="contacto" class="fade-in">
@@ -477,17 +569,6 @@ header {
 <button id="scrollTopBtn">↑</button>
 
 <script>
-const btnGmail = document.getElementById('btnGmail');
-const gmailForm = document.getElementById('gmailForm');
-
-btnGmail.addEventListener('click', () => {
-    if(gmailForm.style.display === 'none') {
-        gmailForm.style.display = 'block';
-        gmailForm.scrollIntoView({behavior:'smooth'});
-    } else {
-        gmailForm.style.display = 'none';
-    }
-});
 
 const scrollTopBtn = document.getElementById("scrollTopBtn");
 window.addEventListener("scroll", () => {
@@ -545,7 +626,50 @@ function animate() {
 }
 
 animate();
+
+
 </script>
+<!-- MODAL (colocado antes del script) -->
+<div id="modalCarta" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000;">
+    <span id="cerrarModal" style="position:absolute; top:20px; right:30px; font-size:2rem; color:white; cursor:pointer;">&times;</span>
+    <img id="imagenCarta" src="" style="max-width:90%; max-height:90%; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.5);">
+</div>
+
+<script>
+const botonesSeccion = document.querySelectorAll('.sections-buttons button');
+const modal = document.getElementById('modalCarta');
+const imgModal = document.getElementById('imagenCarta');
+const cerrarModal = document.getElementById('cerrarModal');
+
+const cartas = {
+    'Menús': 'https://marketplace.canva.com/EAGR93Te9bs/3/0/1131w/canva-men%C3%BA-vertical-para-restaurante-est%C3%A9tico-negro-1NGLVUT10VA.jpg',
+    'Bocadillos': 'https://i.pinimg.com/736x/b1/12/14/b11214c695d603e561665a9caa889bac.jpg',
+    'Postres': 'https://marketplace.canva.com/EAE_XV-C1Cg/2/0/1131w/canva-men%C3%BA-chocolater%C3%ADa-postres-marr%C3%B3n-dulce-Smnok19iyLk.jpg',
+    'Bebidas': 'https://img.freepik.com/psd-gratis/plantilla-menu-bebidas-kombucha_23-2150994072.jpg?semt=ais_hybrid&w=740&q=80',
+    'Hamburguesas': 'https://img.freepik.com/vector-gratis/formato-vertical-diseno-menu-barra-hamburguesas_23-2148659915.jpg?semt=ais_hybrid&w=740&q=80',
+    'Cócteles': 'https://marketplace.canva.com/EAFL_3jTpcY/1/0/1131w/canva-men%C3%BA-documento-a4-carta-de-tragos-cocteler%C3%ADa-tropical-restaurante-bar-verde-aqua-LuOrMIziefc.jpg'
+};
+
+botonesSeccion.forEach(boton => {
+    boton.addEventListener('click', () => {
+        const nombre = boton.querySelector('span').textContent.trim();
+        if(cartas[nombre]) {
+            imgModal.src = cartas[nombre];
+            modal.style.display = 'flex';
+        }
+    });
+});
+
+cerrarModal.addEventListener('click', () => modal.style.display='none');
+modal.addEventListener('click', e => { if(e.target===modal) modal.style.display='none'; });
+</script>
+
+<!-- Modal -->
+<div id="modalCarta" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000;">
+    <span id="cerrarModal" style="position:absolute; top:20px; right:30px; font-size:2rem; color:white; cursor:pointer;">&times;</span>
+    <img id="imagenCarta" src="" style="max-width:90%; max-height:90%; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.5);">
+</div>
 
 </body>
 </html>
+
